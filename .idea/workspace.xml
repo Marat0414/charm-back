@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charm-back.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ProfileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dao/ProfileDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Profile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/ProfileService.java" afterDir="false" />
+    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Creation of the basic layers">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +41,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "build.tools"
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RunManager">
@@ -77,8 +66,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727005879453</updated>
-      <workItem from="1727005882220" duration="3701000" />
+      <workItem from="1727005882220" duration="5353000" />
     </task>
+    <task id="LOCAL-00001" summary="Creation of the basic layers">
+      <created>1727009919001</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727009919001</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,5 +91,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creation of the basic layers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creation of the basic layers" />
   </component>
 </project>
