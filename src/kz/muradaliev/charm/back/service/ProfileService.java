@@ -3,6 +3,7 @@ package kz.muradaliev.charm.back.service;
 import kz.muradaliev.charm.back.dao.ProfileDao;
 import kz.muradaliev.charm.back.model.Profile;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ProfileService {
@@ -12,14 +13,26 @@ public class ProfileService {
         this.dao = dao;
     }
 
-    public Profile save (Profile profile){
+    public Profile save(Profile profile) {
         return dao.save(profile);
     }
 
     public Optional<Profile> findById(Long id) {
-        if (id==null) return Optional.empty();
+        if (id == null) return Optional.empty();
         return dao.findById(id);
     }
 
+    public List<Profile> findAll() {
+        return dao.findAll();
+    }
+
+    public void update(Profile profile) {
+        dao.update(profile);
+    }
+
+    public boolean delete(Long id) {
+        if (id == null) return false;
+        return dao.delete(id);
+    }
     //TODO delete, update, findAll
 }
