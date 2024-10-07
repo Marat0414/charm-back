@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Creation of the basic layers">
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackServerRunner.java" afterDir="false" />
+    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Created CharmBackRunner and CharmBackRunner and some other files">
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Commands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackClientRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackServerRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackServerRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dao/ProfileDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dao/ProfileDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/ProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Profile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,9 +51,9 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.CharmBackRunner">
-    <configuration name="CharmBackRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kz.muradaliev.charm.back.CharmBackRunner" />
+  <component name="RunManager" selected="Application.CharmBackClientRunner">
+    <configuration name="CharmBackClientRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kz.muradaliev.charm.back.CharmBackClientRunner" />
       <module name="charm-back" />
       <extension name="coverage">
         <pattern>
@@ -84,9 +85,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.CharmBackClientRunner" />
+      <item itemvalue="Application.CharmBackServerRunner" />
+      <item itemvalue="Application.Main" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CharmBackRunner" />
+        <item itemvalue="Application.CharmBackClientRunner" />
         <item itemvalue="Application.CharmBackServerRunner" />
         <item itemvalue="Application.Main" />
       </list>
@@ -104,6 +110,9 @@
       <workItem from="1727017153961" duration="3020000" />
       <workItem from="1727262408462" duration="6722000" />
       <workItem from="1727269560672" duration="2545000" />
+      <workItem from="1727711143550" duration="4671000" />
+      <workItem from="1727884934798" duration="4959000" />
+      <workItem from="1728315026707" duration="2540000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of the basic layers">
       <created>1727009919001</created>
@@ -112,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727009919001</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Created CharmBackRunner and CharmBackRunner and some other files">
+      <created>1727711307955</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727711307955</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +147,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creation of the basic layers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creation of the basic layers" />
+    <MESSAGE value="Created CharmBackRunner and CharmBackRunner and some other files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created CharmBackRunner and CharmBackRunner and some other files" />
   </component>
 </project>

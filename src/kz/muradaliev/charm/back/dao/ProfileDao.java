@@ -18,9 +18,10 @@ public class ProfileDao {
     }
 
     public Profile save(Profile profile) {
-        long id = idStorage.incrementAndGet();
+        long id = idStorage.getAndIncrement();
         profile.setId(id);
         storage.put(profile.getId(), profile);
+        System.out.println(storage.values());
         return profile;
     }
 

@@ -6,18 +6,18 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class CharmBackRunner {
+public class CharmBackClientRunner {
     public static void main(String[] args) throws IOException {
 
         try (Socket socket = new Socket("localhost", 8081);
-             DataOutputStream rqStream = new DataOutputStream(socket.getOutputStream());
-             DataInputStream rsStream = new DataInputStream(socket.getInputStream());
+             DataOutputStream requestStream = new DataOutputStream(socket.getOutputStream());
+             DataInputStream responseStream = new DataInputStream(socket.getInputStream());
              Scanner scanner = new Scanner(System.in)) {
 
             while (scanner.hasNextLine()) {
                 String request = scanner.nextLine();
-                rqStream.writeUTF(request);
-                String response = rsStream.readUTF();
+                requestStream.writeUTF(request);
+                String response = responseStream.readUTF();
                 System.out.println(response);
             }
         }
