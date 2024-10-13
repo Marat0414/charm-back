@@ -20,10 +20,10 @@ public class CharmBackServerRunner {
              Socket socket = serverSocket.accept();
              DataInputStream requestStream = new DataInputStream(socket.getInputStream());
              DataOutputStream responseStream = new DataOutputStream(socket.getOutputStream())) {
-            String request = requestStream.readUTF();
-            String response;
+             String request = requestStream.readUTF();
 
             while (!"stop".equals(request)) {
+                String response;
                 if (request.startsWith(SAVE.getPrefix())) {
                     response = controller.save(request.split(SAVE.getPrefix())[1]);
                 } else if (request.startsWith(FIND_BY_ID.getPrefix())) {
@@ -35,7 +35,7 @@ public class CharmBackServerRunner {
                 } else if (request.startsWith(DELETE.getPrefix())) {
                     response = controller.delete(request.split(DELETE.getPrefix())[1]);
                 } else {
-                    response = "Unsupported operation";
+                    response = "Unsupported command";
                 }
                 System.out.println("Client request: " + request);
                 responseStream.writeUTF(response);

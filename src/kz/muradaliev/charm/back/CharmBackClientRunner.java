@@ -1,25 +1,32 @@
 package kz.muradaliev.charm.back;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
-import java.util.Scanner;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 
 public class CharmBackClientRunner {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        try (HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();) {
 
-        try (Socket socket = new Socket("localhost", 8081);
-             DataOutputStream requestStream = new DataOutputStream(socket.getOutputStream());
-             DataInputStream responseStream = new DataInputStream(socket.getInputStream());
-             Scanner scanner = new Scanner(System.in)) {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://yandex.ru"))
+//                    .setHeader("My-Token", "get_off_my_way")
+                    .GET()
+                    .build();
 
-            while (scanner.hasNextLine()) {
-                String request = scanner.nextLine();
-                requestStream.writeUTF(request);
-                String response = responseStream.readUTF();
-                System.out.println(response);
-            }
+            HttpResponse<byte[]> response = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
+            HttpClient.Version version = response.version();
+            int statusCode = response.statusCode();
+            String headers = response.headers().map().entrySet().stream().map(Objects::toString).collect(Collectors.joining(","));
+            String body = new String(response.body());
+            System.out.println(version + " " + statusCode + "\n" + headers + "\n\n" + body);
         }
     }
 }
