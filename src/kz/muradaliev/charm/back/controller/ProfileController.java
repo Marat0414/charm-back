@@ -3,6 +3,7 @@ package kz.muradaliev.charm.back.controller;
 import kz.muradaliev.charm.back.model.Profile;
 import kz.muradaliev.charm.back.service.ProfileService;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ProfileController {
@@ -12,14 +13,10 @@ public class ProfileController {
         this.service = service;
     }
 
-    public String work(String request) {
 
-        return null;
-    }
-
-    public String save(String save) {
-        String[] params = save.split(",");
-        if (params.length < 4) return "Bad request";
+    public String save(String request) {
+        String[] params = request.split(",");
+        if (params.length != 4) return "Bad request: need 4 parameters to save profile.";
 
         Profile profile = new Profile();
         profile.setEmail(params[0]);
@@ -31,24 +28,12 @@ public class ProfileController {
 
     }
 
-    public String findById(String request) {
-        String[] strings = request.split(",");
-        if (strings.length != 1) return "Bad request: need one number parameter";
-
-        long id;
-        try {
-            id = Long.parseLong(strings[0]);
-        } catch (NumberFormatException e) {
-            return "Bad request: can't parse String [" + strings[0] + "] to long.";
-
-        }
-        Optional<Profile> maybeProfile = service.findById(id);
-        if (maybeProfile.isEmpty()) return "Not found";
-        return maybeProfile.get().toString();
+    public Optional<Profile> findById(Long id) {
+        return service.findById(id);
     }
 
-    public String findAll() {
-        return service.findAll().toString();
+    public List<Profile> findAll() {
+        return service.findAll();
     }
 
     public String update(String request) {

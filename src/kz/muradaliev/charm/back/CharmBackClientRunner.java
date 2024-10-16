@@ -5,8 +5,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -16,7 +14,7 @@ public class CharmBackClientRunner {
         try (HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();) {
 
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://yandex.ru"))
+                    .uri(URI.create("http://localhost:8081/profile?id=1"))
 //                    .setHeader("My-Token", "get_off_my_way")
                     .GET()
                     .build();
