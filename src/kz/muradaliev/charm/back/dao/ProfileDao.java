@@ -14,14 +14,24 @@ public class ProfileDao {
 
     public ProfileDao() {
         this.storage = new ConcurrentHashMap<>();
-        Profile profile = new Profile();
-        profile.setId(1L);
-        profile.setEmail("ivanov@mail.ru");
-        profile.setName("Ivan");
-        profile.setSurname("Ivanov");
-        profile.setAbout("Man");
-        this.storage.put(1L, profile);
-        this.idStorage = new AtomicLong(1L);
+        Profile profile1 = new Profile();
+        profile1.setId(1L);
+        profile1.setEmail("ivanov@mail.ru");
+        profile1.setName("Ivan");
+        profile1.setSurname("Ivanov");
+        profile1.setAbout("Man");
+        this.storage.put(1L, profile1);
+
+        Profile profile2 = new Profile();
+        profile2.setId(2L);
+        profile2.setEmail("smirnov@mail.ru");
+        profile2.setName("Semyon");
+        profile2.setSurname("Smirnov");
+        profile2.setAbout("Man");
+        this.storage.put(2L, profile2);
+        this.idStorage = new AtomicLong(3L);
+
+
     }
 
     public Profile save(Profile profile) {

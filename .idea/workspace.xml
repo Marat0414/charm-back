@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Creation of our own HTTP server - updated CharmBackClientRunner and CharmBackServerRunner">
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmHttpServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LikeController.java" afterDir="false" />
+    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Updated HTTP server - updated CharmBackClientRunner and CharmBackServerRunner">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackClientRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackClientRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackServerRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackServerRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dao/ProfileDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dao/ProfileDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +109,9 @@
       <workItem from="1727884934798" duration="4959000" />
       <workItem from="1728315026707" duration="6874000" />
       <workItem from="1728817313435" duration="8832000" />
-      <workItem from="1729096628313" duration="2653000" />
+      <workItem from="1729096628313" duration="3056000" />
+      <workItem from="1729431302609" duration="7190000" />
+      <workItem from="1729935621199" duration="2307000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of the basic layers">
       <created>1727009919001</created>
@@ -144,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1728819592995</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updated HTTP server - updated CharmBackClientRunner and CharmBackServerRunner">
+      <created>1729099667627</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729099667627</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +170,7 @@
     <MESSAGE value="Created CharmBackRunner and CharmBackRunner and some other files" />
     <MESSAGE value="some updates in CharmBackClientRunner and CharmBackServerRunner" />
     <MESSAGE value="updated CharmBackClientRunner and CharmBackServerRunner" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated CharmBackClientRunner and CharmBackServerRunner" />
+    <MESSAGE value="Updated HTTP server - updated CharmBackClientRunner and CharmBackServerRunner" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated HTTP server - updated CharmBackClientRunner and CharmBackServerRunner" />
   </component>
 </project>
