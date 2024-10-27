@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Updated HTTP server - updated ProfileDao">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/servlet-api.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/servlet-api.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
+    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Work with ROOT.war and jar files without installed Tomcat server">
+      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ForwardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/LikeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charm-back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/charm-back.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackClientRunner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmBackServerRunner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/CharmHttpServer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LikeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/lib/servlet-api.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +29,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -48,16 +53,17 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable": "ALL",
-    "last_opened_file_path": "C:/Projects/charm/charm-back/web/WEB-INF/classes",
+    "last_opened_file_path": "C:/Projects/charm/charm-back/resources",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\charm\charm-back\resources" />
       <recent name="C:\Projects\charm\charm-back\web\WEB-INF\classes" />
       <recent name="C:\Projects\charm\charm-back\web\WEB-INF\lib" />
       <recent name="C:\Projects\charm\charm-back\lib" />
@@ -68,52 +74,34 @@
       <recent name="C:\Projects\charm\charm-back\web\WEB-INF\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CharmBackServerRunner">
-    <configuration name="CharmBackClientRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kz.muradaliev.charm.back.CharmBackClientRunner" />
-      <module name="charm-back" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="kz.muradaliev.charm.back.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CharmBackServerRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kz.muradaliev.charm.back.CharmBackServerRunner" />
-      <module name="charm-back" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="kz.muradaliev.charm.back.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kz.muradaliev.charm.back.Main" />
+  <component name="RunManager">
+    <configuration name="charm_web" type="com.poratu.idea.plugins.tomcat">
+      <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
+      <predefined_log_file enabled="true" id="Tomcat Access Log" />
+      <predefined_log_file id="Tomcat Catalina Log" />
+      <predefined_log_file id="Tomcat Manager Log" />
+      <predefined_log_file id="Tomcat Host Manager Log" />
+      <option name="catalinaBase" value="C:\Users\marat\.SmartTomcat\charm-back\charm-back" />
+      <option name="contextPath" value="/" />
+      <option name="docBase" value="C:\Projects\charm\charm-back\out\production\charm-back" />
+      <option name="envOptions">
+        <map />
+      </option>
+      <option name="extraClassPath" value="" />
+      <option name="port" value="8081" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/10.1.31" />
+          <option name="path" value="F:/JAVAFILES/apache-tomcat-10.1.31-windows-x64/apache-tomcat-10.1.31" />
+          <option name="version" value="10.1.31.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" value="" />
       <module name="charm-back" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.CharmBackClientRunner" />
-      <item itemvalue="Application.CharmBackServerRunner" />
-      <item itemvalue="Application.Main" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.CharmBackServerRunner" />
-        <item itemvalue="Application.CharmBackClientRunner" />
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -133,7 +121,8 @@
       <workItem from="1728817313435" duration="8832000" />
       <workItem from="1729096628313" duration="3056000" />
       <workItem from="1729431302609" duration="7190000" />
-      <workItem from="1729935621199" duration="10850000" />
+      <workItem from="1729935621199" duration="12799000" />
+      <workItem from="1730025689345" duration="5740000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of the basic layers">
       <created>1727009919001</created>
@@ -177,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729944657427</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Work with ROOT.war and jar files without installed Tomcat server">
+      <created>1729953573209</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729953573209</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +197,11 @@
     <MESSAGE value="updated CharmBackClientRunner and CharmBackServerRunner" />
     <MESSAGE value="Updated HTTP server - updated CharmBackClientRunner and CharmBackServerRunner" />
     <MESSAGE value="Updated HTTP server - updated ProfileDao" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated HTTP server - updated ProfileDao" />
+    <MESSAGE value="Work with ROOT.war and jar files without installed Tomcat server" />
+    <option name="LAST_COMMIT_MESSAGE" value="Work with ROOT.war and jar files without installed Tomcat server" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

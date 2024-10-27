@@ -9,17 +9,20 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class ProfileDao {
+    private static final ProfileDao INSTANCE = new ProfileDao();
     private final ConcurrentHashMap<Long, Profile> storage;
     private final AtomicLong idStorage;
 
-    public ProfileDao() {
+
+
+    private ProfileDao() {
         this.storage = new ConcurrentHashMap<>();
         Profile profile1 = new Profile();
         profile1.setId(1L);
         profile1.setEmail("ivanov@mail.ru");
         profile1.setName("Ivan");
         profile1.setSurname("Ivanov");
-        profile1.setAbout("Man");
+        profile1.setAbout("I am QA");
         this.storage.put(1L, profile1);
 
         Profile profile2 = new Profile();
@@ -27,11 +30,15 @@ public class ProfileDao {
         profile2.setEmail("smirnov@mail.ru");
         profile2.setName("Semyon");
         profile2.setSurname("Smirnov");
-        profile2.setAbout("Man");
+        profile2.setAbout("I am Java Dev");
         this.storage.put(2L, profile2);
         this.idStorage = new AtomicLong(3L);
 
 
+    }
+
+    public static ProfileDao getInstance() {
+        return INSTANCE;
     }
 
     public Profile save(Profile profile) {
