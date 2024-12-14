@@ -9,7 +9,6 @@ import kz.muradaliev.charm.back.model.Profile;
 import kz.muradaliev.charm.back.service.ProfileService;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 @WebServlet("/profile")
@@ -23,9 +22,8 @@ public class ProfileController extends HttpServlet {
         if (sId != null) {
             Optional<Profile> profile = service.findById(Long.parseLong(sId));
             if (profile.isPresent()) {
-                req.setAttribute("profile", profile.get());
-                forwardUri = "/WEB-INF/jsp/profile.jsp";
-
+                req.setAttribute("profile",profile.get());
+                forwardUri = "WEB-INF/jsp/profile.jsp";
             }
 
         }

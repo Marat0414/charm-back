@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Work with ROOT.war and jar files without installed Tomcat server">
-      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ForwardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/LikeService.java" afterDir="false" />
+    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Updates in controller and work with jsp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charm-back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/charm-back.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LikeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/lib/servlet-api.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +16,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -48,6 +41,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -58,7 +52,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "preferences.fileTypes"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -84,9 +78,6 @@
       <option name="catalinaBase" value="C:\Users\marat\.SmartTomcat\charm-back\charm-back" />
       <option name="contextPath" value="/" />
       <option name="docBase" value="C:\Projects\charm\charm-back\out\production\charm-back" />
-      <option name="envOptions">
-        <map />
-      </option>
       <option name="extraClassPath" value="" />
       <option name="port" value="8081" />
       <option name="tomcatInfo">
@@ -122,7 +113,9 @@
       <workItem from="1729096628313" duration="3056000" />
       <workItem from="1729431302609" duration="7190000" />
       <workItem from="1729935621199" duration="12799000" />
-      <workItem from="1730025689345" duration="5740000" />
+      <workItem from="1730025689345" duration="11997000" />
+      <workItem from="1733648588894" duration="16425000" />
+      <workItem from="1734164688641" duration="9064000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of the basic layers">
       <created>1727009919001</created>
@@ -173,7 +166,21 @@
       <option name="project" value="LOCAL" />
       <updated>1729953573209</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Updated controllers, added new controller for redirect, they use pattern Singleton">
+      <created>1730038142970</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730038142970</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updates in controller and work with jsp">
+      <created>1734172203882</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734172203882</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +205,9 @@
     <MESSAGE value="Updated HTTP server - updated CharmBackClientRunner and CharmBackServerRunner" />
     <MESSAGE value="Updated HTTP server - updated ProfileDao" />
     <MESSAGE value="Work with ROOT.war and jar files without installed Tomcat server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Work with ROOT.war and jar files without installed Tomcat server" />
+    <MESSAGE value="Updated controllers, added new controller for redirect, they use pattern Singleton" />
+    <MESSAGE value="Updates in controller and work with jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates in controller and work with jsp" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
