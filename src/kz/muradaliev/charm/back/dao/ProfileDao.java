@@ -1,5 +1,6 @@
 package kz.muradaliev.charm.back.dao;
 
+import kz.muradaliev.charm.back.model.Gender;
 import kz.muradaliev.charm.back.model.Profile;
 
 import java.util.ArrayList;
@@ -13,8 +14,6 @@ public class ProfileDao {
     private final ConcurrentHashMap<Long, Profile> storage;
     private final AtomicLong idStorage;
 
-
-
     private ProfileDao() {
         this.storage = new ConcurrentHashMap<>();
         Profile profile1 = new Profile();
@@ -23,6 +22,7 @@ public class ProfileDao {
         profile1.setName("Ivan");
         profile1.setSurname("Ivanov");
         profile1.setAbout("I am QA");
+        profile1.setGender(Gender.MALE);
         this.storage.put(1L, profile1);
 
         Profile profile2 = new Profile();
@@ -31,6 +31,7 @@ public class ProfileDao {
         profile2.setName("Semyon");
         profile2.setSurname("Smirnov");
         profile2.setAbout("I am Java Dev");
+        profile2.setGender(Gender.FEMALE);
         this.storage.put(2L, profile2);
         this.idStorage = new AtomicLong(3L);
 
