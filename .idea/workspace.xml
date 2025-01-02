@@ -4,16 +4,26 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Updates in controller and work with jsp">
-      <change afterPath="$PROJECT_DIR$/lib/jakarta.servlet.jsp.jstl-3.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jakarta.servlet.jsp.jstl-api-3.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/RegistrationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Gender.java" afterDir="false" />
+    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Updates in controller and work with JSTL and HTML forms">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/resourceBundles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/words.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/words_en.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/words_ru.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LanguageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/HiddenHttpMethodFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/LanguageFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/WordBundle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ForwardController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LikeController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dao/ProfileDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dao/ProfileDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/LikeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/ProfileService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +34,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -61,7 +71,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -128,7 +138,14 @@
       <workItem from="1730025689345" duration="11997000" />
       <workItem from="1733648588894" duration="16425000" />
       <workItem from="1734164688641" duration="18051000" />
-      <workItem from="1734252127846" duration="608000" />
+      <workItem from="1734252127846" duration="11050000" />
+      <workItem from="1734275257313" duration="1802000" />
+      <workItem from="1734277660306" duration="1251000" />
+      <workItem from="1734279114362" duration="2233000" />
+      <workItem from="1734355169753" duration="747000" />
+      <workItem from="1735810005352" duration="8360000" />
+      <workItem from="1735835814836" duration="966000" />
+      <workItem from="1735837138646" duration="4381000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of the basic layers">
       <created>1727009919001</created>
@@ -200,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734184319184</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Updates in controller and work with JSTL and HTML forms">
+      <created>1734253110443</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1734253110443</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +251,8 @@
     <MESSAGE value="Work with ROOT.war and jar files without installed Tomcat server" />
     <MESSAGE value="Updated controllers, added new controller for redirect, they use pattern Singleton" />
     <MESSAGE value="Updates in controller and work with jsp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates in controller and work with jsp" />
+    <MESSAGE value="Updates in controller and work with JSTL and HTML forms" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates in controller and work with JSTL and HTML forms" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

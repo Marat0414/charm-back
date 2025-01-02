@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class ProfileService {
+
     private static final ProfileService INSTANCE = new ProfileService();
 
     private final ProfileDao dao = ProfileDao.getInstance();
 
     private ProfileService() {
-
     }
 
     public static ProfileService getInstance() {
@@ -40,5 +40,4 @@ public class ProfileService {
         if (id == null) return false;
         return dao.delete(id);
     }
-    //TODO delete, update, findAll
 }
