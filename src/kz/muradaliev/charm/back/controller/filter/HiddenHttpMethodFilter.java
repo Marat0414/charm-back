@@ -12,13 +12,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import kz.muradaliev.charm.back.model.Gender;
+import kz.muradaliev.charm.back.model.Status;
 
 import java.io.IOException;
 import java.util.Locale;
 
-
 @WebFilter("/*")
 public class HiddenHttpMethodFilter implements Filter {
+
     private static final String METHOD_PARAM = "_method";
 
     @Override
@@ -26,6 +27,9 @@ public class HiddenHttpMethodFilter implements Filter {
         ServletContext servletContext = filterConfig.getServletContext();
         if (servletContext.getAttribute("genders") == null) {
             servletContext.setAttribute("genders", Gender.values());
+        }
+        if (servletContext.getAttribute("statuses") == null) {
+            servletContext.setAttribute("statuses", Status.values());
         }
     }
 

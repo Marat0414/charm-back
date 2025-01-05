@@ -5,6 +5,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class WordBundle {
+
     private final ResourceBundle resourceBundle;
 
     public WordBundle(String lang) {

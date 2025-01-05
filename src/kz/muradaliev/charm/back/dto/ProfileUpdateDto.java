@@ -1,8 +1,11 @@
-package kz.muradaliev.charm.back.model;
+package kz.muradaliev.charm.back.dto;
+
+import kz.muradaliev.charm.back.model.Gender;
+import kz.muradaliev.charm.back.model.Status;
 
 import java.time.LocalDate;
 
-public class Profile {
+public class ProfileUpdateDto {
     private Long id;
     private String email;
     private String password;

@@ -1,16 +1,31 @@
 package kz.muradaliev.charm.back.service;
 
 import kz.muradaliev.charm.back.dao.ProfileDao;
-import kz.muradaliev.charm.back.model.Profile;
+import kz.muradaliev.charm.back.dto.ProfileGetDto;
+import kz.muradaliev.charm.back.dto.ProfileUpdateDto;
+import kz.muradaliev.charm.back.dto.RegistrationDto;
+import kz.muradaliev.charm.back.mapper.ProfileMapper;
+import kz.muradaliev.charm.back.mapper.ProfileToProfileGetDtoMapper;
+import kz.muradaliev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
+import kz.muradaliev.charm.back.mapper.RegistrationDtoToProfileMapper;
+import kz.muradaliev.charm.back.model.exception.DuplicateEmailException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 public class ProfileService {
 
     private static final ProfileService INSTANCE = new ProfileService();
 
     private final ProfileDao dao = ProfileDao.getInstance();
+
+    private final ProfileToProfileGetDtoMapper profileToProfileGetDtoMapper = ProfileToProfileGetDtoMapper.getInstance();
+
+    private final ProfileUpdateDtoToProfileMapper profileUpdateDtoToProfileMapper = ProfileUpdateDtoToProfileMapper.getInstance();
+
+    private final RegistrationDtoToProfileMapper registrationDtoToProfileMapper = RegistrationDtoToProfileMapper.getInstance();
 
     private ProfileService() {
     }
@@ -19,25 +34,37 @@ public class ProfileService {
         return INSTANCE;
     }
 
-    public Profile save(Profile profile) {
-        return dao.save(profile);
+    public Long save(RegistrationDto dto) {
+        checkEmail(null, dto.getEmail());
+        return dao.save(registrationDtoToProfileMapper.map(dto)).getId();
     }
 
-    public Optional<Profile> findById(Long id) {
-        if (id == null) return Optional.empty();
-        return dao.findById(id);
+    public Optional<ProfileGetDto> findById(Long id) {
+        return dao.findById(id).map(profileToProfileGetDtoMapper::map);
     }
 
-    public List<Profile> findAll() {
-        return dao.findAll();
+    public List<ProfileGetDto> findAll() {
+        return dao.findAll().stream().map(profileToProfileGetDtoMapper::map).toList();
     }
 
-    public void update(Profile profile) {
-        dao.update(profile);
+    public void update(ProfileUpdateDto dto) {
+        dao.findById(dto.getId())
+                .ifPresent(profile -> {
+                            checkEmail(profile.getEmail(), dto.getEmail());
+                            dao.update(profileUpdateDtoToProfileMapper.map(dto, profile));
+                        }
+                );
+    }
+
+    private void checkEmail(String oldEmail, String newEmail) {
+        if (newEmail == null || Objects.equals(oldEmail, newEmail)) return;
+        Set<String> existEmails = dao.getAllEmails();
+        if (existEmails.contains(newEmail)) {
+            throw new DuplicateEmailException();
+        }
     }
 
     public boolean delete(Long id) {
-        if (id == null) return false;
         return dao.delete(id);
     }
 }

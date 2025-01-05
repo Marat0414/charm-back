@@ -1,14 +1,17 @@
-package kz.muradaliev.charm.back.model;
+package kz.muradaliev.charm.back.dto;
+
+import kz.muradaliev.charm.back.model.Gender;
+import kz.muradaliev.charm.back.model.Status;
 
 import java.time.LocalDate;
 
-public class Profile {
+public class ProfileGetDto {
     private Long id;
     private String email;
-    private String password;
     private String name;
     private String surname;
     private LocalDate birthDate;
+    private Integer age;
     private String about;
     private Gender gender;
     private Status status;
@@ -27,14 +30,6 @@ public class Profile {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -59,6 +54,14 @@ public class Profile {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String getAbout() {

@@ -2,40 +2,49 @@ package kz.muradaliev.charm.back.dao;
 
 import kz.muradaliev.charm.back.model.Gender;
 import kz.muradaliev.charm.back.model.Profile;
+import kz.muradaliev.charm.back.model.Status;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 public class ProfileDao {
+
     private static final ProfileDao INSTANCE = new ProfileDao();
-    private final ConcurrentHashMap<Long, Profile> storage;
+
     private final AtomicLong idStorage;
+    private final ConcurrentHashMap<Long, Profile> storage;
 
     private ProfileDao() {
         this.storage = new ConcurrentHashMap<>();
+        Profile profile = new Profile();
+        profile.setId(1L);
+        profile.setEmail("ivanov@mail.ru");
+        profile.setPassword("123");
+        profile.setName("Ivan");
+        profile.setSurname("Ivanov");
+        profile.setBirthDate(LocalDate.parse("2001-12-03"));
+        profile.setAbout("I am QA");
+        profile.setGender(Gender.MALE);
+        profile.setStatus(Status.ACTIVE);
+        this.storage.put(1L, profile);
         Profile profile1 = new Profile();
-        profile1.setId(1L);
-        profile1.setEmail("ivanov@mail.ru");
-        profile1.setName("Ivan");
-        profile1.setSurname("Ivanov");
-        profile1.setAbout("I am QA");
-        profile1.setGender(Gender.MALE);
-        this.storage.put(1L, profile1);
-
-        Profile profile2 = new Profile();
-        profile2.setId(2L);
-        profile2.setEmail("smirnov@mail.ru");
-        profile2.setName("Semyon");
-        profile2.setSurname("Smirnov");
-        profile2.setAbout("I am Java Dev");
-        profile2.setGender(Gender.FEMALE);
-        this.storage.put(2L, profile2);
+        profile1.setId(2L);
+        profile1.setEmail("sidorova@mail.ru");
+        profile1.setPassword("456");
+        profile1.setName("Elena");
+        profile1.setSurname("Sidorova");
+        profile1.setBirthDate(LocalDate.parse("1999-09-01"));
+        profile1.setAbout("I am Java Dev");
+        profile1.setGender(Gender.FEMALE);
+        profile1.setStatus(Status.INACTIVE);
+        this.storage.put(2L, profile1);
         this.idStorage = new AtomicLong(3L);
-
-
     }
 
     public static ProfileDao getInstance() {
@@ -43,14 +52,13 @@ public class ProfileDao {
     }
 
     public Profile save(Profile profile) {
-        long id = idStorage.getAndIncrement();
-        profile.setId(id);
+        profile.setId(idStorage.getAndIncrement());
         storage.put(profile.getId(), profile);
-        System.out.println(storage.values());
         return profile;
     }
 
     public Optional<Profile> findById(Long id) {
+        if (id == null) return Optional.empty();
         return Optional.ofNullable(storage.get(id));
     }
 
@@ -69,5 +77,7 @@ public class ProfileDao {
         return storage.remove(id) != null;
     }
 
-
+    public Set<String> getAllEmails() {
+        return storage.values().stream().map(Profile::getEmail).collect(Collectors.toSet());
+    }
 }

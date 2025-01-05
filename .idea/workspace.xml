@@ -4,26 +4,56 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Updates in controller and work with JSTL and HTML forms">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/resourceBundles.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/words.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/words_en.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/words_ru.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LanguageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/HiddenHttpMethodFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/LanguageFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/WordBundle.java" afterDir="false" />
+    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Added filters &amp;&amp; LanguageController + cookies">
+      <change afterPath="$PROJECT_DIR$/lib/jakarta.servlet.jsp.jstl-2.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/slf4j-api-2.0.16.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/slf4j-simple-2.0.16.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/email.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/error.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/error400.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/error404.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profiles.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/registration.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/style.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/simplelogger.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/EmailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/ErrorFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dto/ProfileGetDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dto/ProfileUpdateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dto/RegistrationDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/ProfileMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/ProfileSaveDtoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/ProfileToProfileGetDtoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/ProfileUpdateDtoToProfileMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/RegistrationDtoToProfileMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/RequestToProfileUpdateDtoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/RequestToRegistrationDtoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/exception/DuplicateEmailException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/utils/StringUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charm-back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/charm-back.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jakarta.servlet.jsp.jstl-3.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jakarta.servlet.jsp.jstl-api-3.0.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jakarta.servlet.jsp.jstl-api-3.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/footer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/jsp/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ForwardController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LikeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/words.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/words.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/words_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/words_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/words_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/words_ru.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LanguageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/LanguageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/ProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/LikeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/HiddenHttpMethodFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/HiddenHttpMethodFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/LanguageFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/LanguageFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dao/ProfileDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dao/ProfileDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Commands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/ProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/WordBundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/WordBundle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +63,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
+        <option value="Interface" />
         <option value="Enum" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -69,21 +100,22 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Projects/charm/charm-back/lib&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="kz.muradaliev.charm.back.mapper" />
       <recent name="kz.muradaliev.charm.back.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Projects\charm\charm-back\lib" />
+      <recent name="C:\Projects\charm\charm-back\resources\WEB-INF\jsp" />
       <recent name="C:\Projects\charm\charm-back\resources" />
       <recent name="C:\Projects\charm\charm-back\web\WEB-INF\classes" />
       <recent name="C:\Projects\charm\charm-back\web\WEB-INF\lib" />
-      <recent name="C:\Projects\charm\charm-back\web" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Projects\charm\charm-back\web\WEB-INF\classes" />
@@ -145,7 +177,14 @@
       <workItem from="1734355169753" duration="747000" />
       <workItem from="1735810005352" duration="8360000" />
       <workItem from="1735835814836" duration="966000" />
-      <workItem from="1735837138646" duration="4381000" />
+      <workItem from="1735837138646" duration="4882000" />
+      <workItem from="1735900732038" duration="16458000" />
+      <workItem from="1735982806575" duration="1147000" />
+      <workItem from="1735983980063" duration="388000" />
+      <workItem from="1735984388767" duration="1206000" />
+      <workItem from="1735987607464" duration="10531000" />
+      <workItem from="1736003355945" duration="2532000" />
+      <workItem from="1736035923835" duration="6310000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of the basic layers">
       <created>1727009919001</created>
@@ -224,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734253110443</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added filters &amp;&amp; LanguageController + cookies">
+      <created>1735841731999</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1735841731999</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +298,8 @@
     <MESSAGE value="Updated controllers, added new controller for redirect, they use pattern Singleton" />
     <MESSAGE value="Updates in controller and work with jsp" />
     <MESSAGE value="Updates in controller and work with JSTL and HTML forms" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates in controller and work with JSTL and HTML forms" />
+    <MESSAGE value="Added filters &amp;&amp; LanguageController + cookies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added filters &amp;&amp; LanguageController + cookies" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

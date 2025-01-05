@@ -12,11 +12,14 @@ import java.util.Arrays;
 
 @WebFilter("/*")
 public class LanguageFilter implements Filter {
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse res = (HttpServletResponse) servletResponse;
+
         Cookie[] cookies = req.getCookies() != null ? req.getCookies() : new Cookie[]{};
+
         String lang = Arrays.stream(cookies)
                 .filter(cookie -> "lang".equals(cookie.getName()))
                 .map(Cookie::getValue)
@@ -24,6 +27,7 @@ public class LanguageFilter implements Filter {
                 .orElse("en");
 
         WordBundle wordBundle = new WordBundle(lang);
+
         req.setAttribute("wordBundle", wordBundle);
 
         filterChain.doFilter(req, res);
