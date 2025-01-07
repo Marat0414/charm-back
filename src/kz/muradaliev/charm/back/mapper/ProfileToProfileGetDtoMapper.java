@@ -2,16 +2,18 @@ package kz.muradaliev.charm.back.mapper;
 
 import kz.muradaliev.charm.back.dto.ProfileGetDto;
 import kz.muradaliev.charm.back.model.Profile;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
-
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileToProfileGetDtoMapper implements Mapper<Profile, ProfileGetDto> {
 
     private static final ProfileToProfileGetDtoMapper INSTANCE = new ProfileToProfileGetDtoMapper();
-
-    private ProfileToProfileGetDtoMapper() {
-    }
+//    private ProfileToProfileGetDtoMapper() {
+//    }
 
     public static ProfileToProfileGetDtoMapper getInstance() {
         return INSTANCE;

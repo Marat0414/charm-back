@@ -4,17 +4,19 @@ import kz.muradaliev.charm.back.dao.ProfileDao;
 import kz.muradaliev.charm.back.dto.ProfileGetDto;
 import kz.muradaliev.charm.back.dto.ProfileUpdateDto;
 import kz.muradaliev.charm.back.dto.RegistrationDto;
-import kz.muradaliev.charm.back.mapper.ProfileMapper;
 import kz.muradaliev.charm.back.mapper.ProfileToProfileGetDtoMapper;
 import kz.muradaliev.charm.back.mapper.ProfileUpdateDtoToProfileMapper;
 import kz.muradaliev.charm.back.mapper.RegistrationDtoToProfileMapper;
 import kz.muradaliev.charm.back.model.exception.DuplicateEmailException;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileService {
 
     private static final ProfileService INSTANCE = new ProfileService();
@@ -27,8 +29,8 @@ public class ProfileService {
 
     private final RegistrationDtoToProfileMapper registrationDtoToProfileMapper = RegistrationDtoToProfileMapper.getInstance();
 
-    private ProfileService() {
-    }
+//    private ProfileService() {
+//    }
 
     public static ProfileService getInstance() {
         return INSTANCE;

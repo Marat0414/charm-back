@@ -3,13 +3,13 @@ package kz.muradaliev.charm.back.mapper;
 import kz.muradaliev.charm.back.dto.RegistrationDto;
 import kz.muradaliev.charm.back.model.Profile;
 import kz.muradaliev.charm.back.model.Status;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RegistrationDtoToProfileMapper implements Mapper<RegistrationDto, Profile>{
 
     private static final RegistrationDtoToProfileMapper INSTANCE = new RegistrationDtoToProfileMapper();
-
-    private RegistrationDtoToProfileMapper() {
-    }
 
     public static RegistrationDtoToProfileMapper getInstance() {
         return INSTANCE;

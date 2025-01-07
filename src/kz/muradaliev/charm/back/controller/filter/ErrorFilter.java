@@ -9,6 +9,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,9 +19,10 @@ import static jakarta.servlet.RequestDispatcher.ERROR_EXCEPTION;
 
 
 @WebFilter(value = "/*", dispatcherTypes = DispatcherType.ERROR)
+@Slf4j
 public class ErrorFilter implements Filter {
 
-    private static final Logger log = LoggerFactory.getLogger(ErrorFilter.class);
+//    private static final Logger log = LoggerFactory.getLogger(ErrorFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

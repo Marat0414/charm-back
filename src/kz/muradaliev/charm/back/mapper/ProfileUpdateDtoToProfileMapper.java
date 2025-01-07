@@ -2,13 +2,13 @@ package kz.muradaliev.charm.back.mapper;
 
 import kz.muradaliev.charm.back.dto.ProfileUpdateDto;
 import kz.muradaliev.charm.back.model.Profile;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileUpdateDtoToProfileMapper implements Mapper<ProfileUpdateDto, Profile> {
 
     private static final ProfileUpdateDtoToProfileMapper INSTANCE = new ProfileUpdateDtoToProfileMapper();
-
-    private ProfileUpdateDtoToProfileMapper() {
-    }
 
     public static ProfileUpdateDtoToProfileMapper getInstance() {
         return INSTANCE;

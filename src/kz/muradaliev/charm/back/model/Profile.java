@@ -1,7 +1,10 @@
 package kz.muradaliev.charm.back.model;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 
+@Data
 public class Profile {
     private Long id;
     private String email;

@@ -4,17 +4,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import kz.muradaliev.charm.back.dto.ProfileUpdateDto;
 import kz.muradaliev.charm.back.model.Gender;
 import kz.muradaliev.charm.back.model.Status;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 import static kz.muradaliev.charm.back.utils.StringUtils.isBlank;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletRequest, ProfileUpdateDto> {
 
     private static final RequestToProfileUpdateDtoMapper INSTANCE = new RequestToProfileUpdateDtoMapper();
-
-    private RequestToProfileUpdateDtoMapper() {
-    }
 
     public static RequestToProfileUpdateDtoMapper getInstance() {
         return INSTANCE;
