@@ -19,10 +19,9 @@ import static jakarta.servlet.RequestDispatcher.ERROR_EXCEPTION;
 
 
 @WebFilter(value = "/*", dispatcherTypes = DispatcherType.ERROR)
-@Slf4j
 public class ErrorFilter implements Filter {
 
-//    private static final Logger log = LoggerFactory.getLogger(ErrorFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(ErrorFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -31,10 +30,10 @@ public class ErrorFilter implements Filter {
 
         Throwable e = (Throwable) req.getAttribute(ERROR_EXCEPTION);
 
-        if (res.getStatus() > 500) {
+        if (res.getStatus() >= 500) {
             log.error("Unexpected error: ", e);
         } else {
-            log.error("{} error", res.getStatus());
+            log.warn("{} status code", res.getStatus());
         }
 
         filterChain.doFilter(req, res);

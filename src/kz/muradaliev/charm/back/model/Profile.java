@@ -2,9 +2,10 @@ package kz.muradaliev.charm.back.model;
 
 import lombok.Data;
 
+
 import java.time.LocalDate;
 
-@Data
+
 public class Profile {
     private Long id;
     private String email;
@@ -15,6 +16,8 @@ public class Profile {
     private String about;
     private Gender gender;
     private Status status;
+    private String photo;
+
 
     public Long getId() {
         return id;
@@ -87,4 +90,13 @@ public class Profile {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
 }

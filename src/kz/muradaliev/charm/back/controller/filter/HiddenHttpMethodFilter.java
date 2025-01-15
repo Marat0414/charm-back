@@ -13,11 +13,16 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import kz.muradaliev.charm.back.model.Gender;
 import kz.muradaliev.charm.back.model.Status;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.util.Locale;
 
-@WebFilter("/*")
+import static jakarta.servlet.DispatcherType.FORWARD;
+import static jakarta.servlet.DispatcherType.REQUEST;
+import static kz.muradaliev.charm.back.utils.StringUtils.isBlank;
+
+@WebFilter(value = "/*", dispatcherTypes = {FORWARD, REQUEST})
 public class HiddenHttpMethodFilter implements Filter {
 
     private static final String METHOD_PARAM = "_method";
@@ -33,21 +38,25 @@ public class HiddenHttpMethodFilter implements Filter {
         }
     }
 
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
             throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        String paramValue = request.getParameter(METHOD_PARAM);
-
-        if ("POST".equals(request.getMethod()) && paramValue != null && !paramValue.isBlank()) {
-            String method = paramValue.toUpperCase(Locale.ENGLISH);
-            HttpServletRequest wrapper = new HttpMethodRequestWrapper(request, method);
-            filterChain.doFilter(wrapper, response);
+        if (request.getDispatcherType() != REQUEST && request instanceof HttpMethodRequestWrapper wrapper) {
+            request = (HttpServletRequest) wrapper.getRequest();
         } else {
-            filterChain.doFilter(request, response);
+            String paramValue = request.getParameter(METHOD_PARAM);
+
+            if ("POST".equals(request.getMethod()) && !isBlank(paramValue)) {
+                String method = paramValue.toUpperCase(Locale.ENGLISH);
+                request = new HttpMethodRequestWrapper(request, method);
+            }
         }
+
+        filterChain.doFilter(request, response);
     }
 
     /**

@@ -1,6 +1,7 @@
 package kz.muradaliev.charm.back.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,6 +10,8 @@ import kz.muradaliev.charm.back.dto.ProfileGetDto;
 import kz.muradaliev.charm.back.dto.ProfileUpdateDto;
 import kz.muradaliev.charm.back.mapper.RequestToProfileUpdateDtoMapper;
 import kz.muradaliev.charm.back.service.ProfileService;
+import kz.muradaliev.charm.back.validator.ProfileUpdateValidator;
+import kz.muradaliev.charm.back.validator.ValidationResult;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -16,10 +19,12 @@ import java.util.Optional;
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 @WebServlet("/profile")
+@MultipartConfig
 public class ProfileController extends HttpServlet {
     private final ProfileService service = ProfileService.getInstance();
 
     private final RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper = RequestToProfileUpdateDtoMapper.getInstance();
+    private final ProfileUpdateValidator profileUpdateValidator = ProfileUpdateValidator.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,10 +48,16 @@ public class ProfileController extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException,ServletException {
         ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req);
-        service.update(dto);
-        String referer = req.getHeader("referer");
-        resp.sendRedirect(referer);
+        ValidationResult validationResult = profileUpdateValidator.validate(dto);
+        if (validationResult.isValid()) {
+            service.update(dto);
+            String referer = req.getHeader("referer");
+            resp.sendRedirect(referer);
+        } else {
+            req.setAttribute("errors", validationResult.getErrors());
+            doGet(req, resp);
+        }
     }
 }

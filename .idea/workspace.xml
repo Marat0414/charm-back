@@ -4,27 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Added logging and updated some mappers &amp;&amp; controllers">
-      <change afterPath="$PROJECT_DIR$/lib/lombok.jar" afterDir="false" />
+    <list default="true" id="65b8557d-a09c-468f-ac54-08c7fe255c6a" name="Changes" comment="Updated logging &amp;&amp; simplified with Lombok">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/EmailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/ErrorFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/controller/filter/ErrorFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dto/ProfileGetDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dto/ProfileGetDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dto/ProfileUpdateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dto/ProfileUpdateDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dto/RegistrationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/dto/RegistrationDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/ProfileMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/ProfileSaveDtoMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/ProfileToProfileGetDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/ProfileToProfileGetDtoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/ProfileUpdateDtoToProfileMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/ProfileUpdateDtoToProfileMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/RegistrationDtoToProfileMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/RegistrationDtoToProfileMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/RequestToProfileUpdateDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/RequestToProfileUpdateDtoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/RequestToRegistrationDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/mapper/RequestToRegistrationDtoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Gender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/model/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/service/ProfileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kz/muradaliev/charm/back/utils/StringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charm-back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/charm-back.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +37,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2mQPYiVBDWLUPAVZzCfbmFW2hTY" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -68,7 +54,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable": "ALL",
-    "last_opened_file_path": "C:/Projects/charm/charm-back/lib",
+    "last_opened_file_path": "C:/Projects/charm-back",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
@@ -103,7 +89,7 @@
       <predefined_log_file id="Tomcat Host Manager Log" />
       <option name="catalinaBase" value="C:\Users\marat\.SmartTomcat\charm-back\charm-back" />
       <option name="contextPath" value="/" />
-      <option name="docBase" value="C:\Projects\charm\charm-back\out\production\charm-back" />
+      <option name="docBase" value="C:\Projects\charm-back\out\production\charm-back" />
       <option name="extraClassPath" value="" />
       <option name="port" value="8081" />
       <option name="tomcatInfo">
@@ -165,7 +151,15 @@
       <workItem from="1736152266217" duration="355000" />
       <workItem from="1736152643678" duration="274000" />
       <workItem from="1736152935532" duration="312000" />
-      <workItem from="1736257375728" duration="12700000" />
+      <workItem from="1736257375728" duration="14315000" />
+      <workItem from="1736610308153" duration="281000" />
+      <workItem from="1736610610647" duration="2752000" />
+      <workItem from="1736613498982" duration="251000" />
+      <workItem from="1736613771979" duration="1236000" />
+      <workItem from="1736688156180" duration="11922000" />
+      <workItem from="1736774781320" duration="6355000" />
+      <workItem from="1736833847544" duration="1769000" />
+      <workItem from="1736839162105" duration="257000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of the basic layers">
       <created>1727009919001</created>
@@ -258,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1736043437686</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Updated logging &amp;&amp; simplified with Lombok">
+      <created>1736272766022</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1736272766022</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,7 +289,8 @@
     <MESSAGE value="Updates in controller and work with JSTL and HTML forms" />
     <MESSAGE value="Added filters &amp;&amp; LanguageController + cookies" />
     <MESSAGE value="Added logging and updated some mappers &amp;&amp; controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logging and updated some mappers &amp;&amp; controllers" />
+    <MESSAGE value="Updated logging &amp;&amp; simplified with Lombok" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated logging &amp;&amp; simplified with Lombok" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

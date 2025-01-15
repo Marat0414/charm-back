@@ -1,17 +1,19 @@
 package kz.muradaliev.charm.back.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kz.muradaliev.charm.back.validator.ProfileUpdateValidator;
+import kz.muradaliev.charm.back.validator.ValidationResult;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import kz.muradaliev.charm.back.dto.ProfileGetDto;
 import kz.muradaliev.charm.back.dto.ProfileUpdateDto;
 import kz.muradaliev.charm.back.mapper.RequestToProfileUpdateDtoMapper;
-import kz.muradaliev.charm.back.model.exception.DuplicateEmailException;
 import kz.muradaliev.charm.back.service.ProfileService;
 
 import java.io.IOException;
@@ -22,14 +24,15 @@ import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 @WebServlet("/email")
-@Slf4j
+@MultipartConfig
 public class EmailController extends HttpServlet {
 
-//    private static final Logger log = LoggerFactory.getLogger(EmailController.class);
+    private static final Logger log = LoggerFactory.getLogger(EmailController.class);
 
     private final ProfileService service = ProfileService.getInstance();
 
     private final RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper = RequestToProfileUpdateDtoMapper.getInstance();
+    private final ProfileUpdateValidator profileUpdateValidator = ProfileUpdateValidator.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,14 +53,16 @@ public class EmailController extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException,ServletException {
         ProfileUpdateDto dto = requestToProfileUpdateDtoMapper.map(req, new ProfileUpdateDto());
-        try {
+        ValidationResult validationResult = profileUpdateValidator.validate(dto);
+        if (!validationResult.isValid()) {
+            req.setAttribute("errors", validationResult.getErrors());
+            doGet(req, resp);
+        } else {
             service.update(dto);
             log.warn("Profile with id {} changed email to {}", dto.getId(), dto.getEmail());
             resp.sendRedirect(String.format("/profile?id=%s", dto.getId()));
-        } catch (DuplicateEmailException e) {
-            resp.sendError(SC_BAD_REQUEST);
         }
     }
 }

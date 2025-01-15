@@ -10,6 +10,8 @@ import kz.muradaliev.charm.back.dto.RegistrationDto;
 import kz.muradaliev.charm.back.mapper.RequestToRegistrationDtoMapper;
 import kz.muradaliev.charm.back.model.Profile;
 import kz.muradaliev.charm.back.service.ProfileService;
+import kz.muradaliev.charm.back.validator.RegistrationValidator;
+import kz.muradaliev.charm.back.validator.ValidationResult;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +19,14 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 @WebServlet("/registration")
-@Slf4j
 public class RegistrationController extends HttpServlet {
 
+    private static final Logger log = LoggerFactory.getLogger(RegistrationController.class);
     private final ProfileService service = ProfileService.getInstance();
 
     private final RequestToRegistrationDtoMapper requestToRegistrationDtoMapper = RequestToRegistrationDtoMapper.getInstance();
+
+    private final RegistrationValidator registrationValidator = RegistrationValidator.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,11 +34,17 @@ public class RegistrationController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         RegistrationDto dto = requestToRegistrationDtoMapper.map(req);
-        Long id = service.save(dto);
-        log.info("Profile with the email address {} has been registered with id {}", dto.getEmail(), id);
-        resp.sendRedirect(String.format("/profile?id=%s", id));
+        ValidationResult result = registrationValidator.validate(dto);
+        if (!result.isValid()) {
+            req.setAttribute("errors", result.getErrors());
+            doGet(req, resp);
+        } else {
+            Long id = service.save(dto);
+            log.info("Profile with the email address {} has been registered with id {}", dto.getEmail(), id);
+            resp.sendRedirect(String.format("/profile?id=%s", id));
+        }
     }
 
     @Override

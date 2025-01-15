@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RequestToRegistrationDtoMapper implements Mapper<HttpServletRequest, RegistrationDto> {
 
+
     private static final RequestToRegistrationDtoMapper INSTANCE = new RequestToRegistrationDtoMapper();
 
     public static RequestToRegistrationDtoMapper getInstance() {
