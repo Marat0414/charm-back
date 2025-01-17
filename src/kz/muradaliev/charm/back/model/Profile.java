@@ -1,8 +1,5 @@
 package kz.muradaliev.charm.back.model;
 
-import lombok.Data;
-
-
 import java.time.LocalDate;
 
 
@@ -17,6 +14,7 @@ public class Profile {
     private Gender gender;
     private Status status;
     private String photo;
+    private Role role;
 
 
     public Long getId() {
@@ -99,4 +97,11 @@ public class Profile {
         this.photo = photo;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }

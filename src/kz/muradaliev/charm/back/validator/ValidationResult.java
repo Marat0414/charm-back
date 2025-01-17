@@ -23,4 +23,5 @@ public class ValidationResult {
     public List<String> getErrors() {
         return new ArrayList<>(errors);
     }
+
 }

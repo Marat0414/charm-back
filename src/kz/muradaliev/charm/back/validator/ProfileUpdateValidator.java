@@ -5,16 +5,12 @@ import kz.muradaliev.charm.back.dto.ProfileUpdateDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.util.regex.Pattern;
-
 import static kz.muradaliev.charm.back.utils.DateTimeUtils.getAge;
-import static kz.muradaliev.charm.back.utils.StringUtils.VALID_EMAIL_ADDRESS_REGEX;
-import static kz.muradaliev.charm.back.utils.StringUtils.isBlank;
+import static kz.muradaliev.charm.back.utils.DateTimeUtils.isValidAge;
+
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileUpdateValidator implements Validator<ProfileUpdateDto> {
-
-    private final ProfileDao dao = ProfileDao.getInstance();
 
     private static final ProfileUpdateValidator INSTANCE = new ProfileUpdateValidator();
 
@@ -25,19 +21,8 @@ public class ProfileUpdateValidator implements Validator<ProfileUpdateDto> {
     @Override
     public ValidationResult validate(ProfileUpdateDto dto) {
         ValidationResult result = new ValidationResult();
-        if (!isBlank(dto.getEmail())) {
-            if (!VALID_EMAIL_ADDRESS_REGEX.matcher(dto.getEmail()).matches()) {
-                result.add("error.email.invalid");
-            }
-            if (dao.getAllEmails().contains(dto.getEmail())) {
-                result.add("error.email.exist");
-            }
-        }
-        if (dto.getBirthDate() != null) {
-            int age = getAge(dto.getBirthDate());
-            if (age < 18 || age > 100) {
-                result.add("error.age.invalid");
-            }
+        if (dto.getBirthDate() != null && !isValidAge(dto.getBirthDate())) {
+            result.add("error.age.invalid");
         }
         return result;
     }

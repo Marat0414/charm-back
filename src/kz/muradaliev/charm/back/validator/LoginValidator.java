@@ -1,32 +1,36 @@
 package kz.muradaliev.charm.back.validator;
 
 import kz.muradaliev.charm.back.dao.ProfileDao;
-import kz.muradaliev.charm.back.dto.RegistrationDto;
+import kz.muradaliev.charm.back.dto.LoginDto;
+import kz.muradaliev.charm.back.model.Profile;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+
+import java.util.Optional;
 
 import static kz.muradaliev.charm.back.utils.StringUtils.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class RegistrationValidator implements Validator<RegistrationDto> {
+public class LoginValidator implements Validator<LoginDto> {
 
     private final ProfileDao dao = ProfileDao.getInstance();
 
-    private static final RegistrationValidator INSTANCE = new RegistrationValidator();
+    private static final LoginValidator INSTANCE = new LoginValidator();
 
-    public static RegistrationValidator getInstance() {
+    public static LoginValidator getInstance() {
         return INSTANCE;
     }
 
     @Override
-    public ValidationResult validate(RegistrationDto dto) {
+    public ValidationResult validate(LoginDto dto) {
         ValidationResult result = new ValidationResult();
         if (!isValidEmail(dto.getEmail())) {
             result.add("error.email.invalid");
-        } else if (dao.getAllEmails().contains(dto.getEmail())) {
-            result.add("error.email.exist");
         }
-        if (!isValidPassword(dto.getPassword()) || !dto.getPassword().equals(dto.getConfirm())) {
+        Optional<Profile> profile = dao.findByEmail(dto.getEmail());
+        if (profile.isEmpty()) {
+            result.add("error.email.missing");
+        } else if (isBlank(dto.getPassword()) || !dto.getPassword().equals(profile.get().getPassword())) {
             result.add("error.password.invalid");
         }
         return result;
