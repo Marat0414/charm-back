@@ -1,27 +1,33 @@
 package kz.muradaliev.charm.back.mapper;
 
-import kz.muradaliev.charm.back.dto.ProfileUpdateDto;
+import kz.muradaliev.charm.back.dto.ProfileFullUpdateDto;
 import kz.muradaliev.charm.back.model.Profile;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class ProfileUpdateDtoToProfileMapper implements Mapper<ProfileUpdateDto, Profile> {
+public class ProfileFullUpdateDtoToProfileMapper implements Mapper<ProfileFullUpdateDto, Profile> {
 
-    private static final ProfileUpdateDtoToProfileMapper INSTANCE = new ProfileUpdateDtoToProfileMapper();
+    private static final ProfileFullUpdateDtoToProfileMapper INSTANCE = new ProfileFullUpdateDtoToProfileMapper();
 
-    public static ProfileUpdateDtoToProfileMapper getInstance() {
+    public static ProfileFullUpdateDtoToProfileMapper getInstance() {
         return INSTANCE;
     }
 
     @Override
-    public Profile map(ProfileUpdateDto dto) {
+    public Profile map(ProfileFullUpdateDto dto) {
         return map(dto, new Profile());
     }
 
     @Override
-    public Profile map(ProfileUpdateDto dto, Profile profile) {
+    public Profile map(ProfileFullUpdateDto dto, Profile profile) {
         profile.setId(dto.getId());
+        if (dto.getEmail() != null) {
+            profile.setEmail(dto.getEmail());
+        }
+        if (dto.getPassword() != null) {
+            profile.setPassword(dto.getPassword());
+        }
         if (dto.getName() != null) {
             profile.setName(dto.getName());
         }

@@ -1,30 +1,27 @@
 package kz.muradaliev.charm.back.dto;
 
+import jakarta.servlet.http.Part;
 import kz.muradaliev.charm.back.model.Gender;
-import kz.muradaliev.charm.back.model.Role;
 import kz.muradaliev.charm.back.model.Status;
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ProfileGetDto {
-    private Long id;
-    private String email;
-    private String name;
-    private String surname;
-    private LocalDate birthDate;
-    private Integer age;
-    private String about;
-    private Gender gender;
-    private Status status;
-    private String photo;
-    private Role role;
+public class ProfileFullUpdateDto {
+    Long id;
+    String email;
+    String password;
+    String name;
+    String surname;
+    LocalDate birthDate;
+    String about;
+    Gender gender;
+    Status status;
+    Part photo;
 
     public Long getId() {
         return id;
@@ -40,6 +37,14 @@ public class ProfileGetDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -66,14 +71,6 @@ public class ProfileGetDto {
         this.birthDate = birthDate;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public String getAbout() {
         return about;
     }
@@ -98,19 +95,11 @@ public class ProfileGetDto {
         this.status = status;
     }
 
-    public String getPhoto() {
+    public Part getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(Part photo) {
         this.photo = photo;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 }

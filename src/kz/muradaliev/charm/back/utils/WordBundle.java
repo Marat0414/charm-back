@@ -1,4 +1,4 @@
-package kz.muradaliev.charm.back.service;
+package kz.muradaliev.charm.back.utils;
 
 import java.util.Locale;
 import java.util.MissingResourceException;

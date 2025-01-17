@@ -7,23 +7,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kz.muradaliev.charm.back.service.ContentService;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
-@WebServlet("/content/*")
+import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
+import static kz.muradaliev.charm.back.utils.UrlUtils.CONTENT_URL;
+
+@WebServlet(CONTENT_URL + "/*")
 public class ContentController extends HttpServlet {
 
-    public static final ContentService contentService = ContentService.getInstance();
+    private final ContentService contentService = ContentService.getInstance();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String contentPath = req.getRequestURI().replace("/content", "");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String contentPath = req.getRequestURI().replaceFirst(CONTENT_URL, "");
         resp.setContentType("application/octet-stream");
         try {
             contentService.download(contentPath, resp.getOutputStream());
-        } catch (IOException e) {
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+        } catch (FileNotFoundException e) {
+            resp.sendError(SC_NOT_FOUND);
         }
-
     }
 }

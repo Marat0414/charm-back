@@ -1,7 +1,6 @@
 package kz.muradaliev.charm.back.service;
 
 import jakarta.servlet.ServletOutputStream;
-import kz.muradaliev.charm.back.mapper.ProfileToProfileGetDtoMapper;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -9,11 +8,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
+import static kz.muradaliev.charm.back.utils.UrlUtils.BASE_CONTENT_PATH;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ContentService {
@@ -24,24 +26,21 @@ public class ContentService {
     }
 
     public void upload(String contentPath, InputStream inputStream) throws IOException {
-        Path contentFullPath = getAbsolutePath(contentPath);
-        OutputStream outputStream = Files.exists(contentFullPath.getParent())
-                ? Files.newOutputStream(contentFullPath, CREATE, TRUNCATE_EXISTING)
-                : null;
-        if (outputStream == null) {
-            throw new FileNotFoundException();
-        }
+        Path contentFullPath = Path.of(BASE_CONTENT_PATH, contentPath);
+        Files.createDirectories(contentFullPath.getParent());
+        OutputStream outputStream = Files.newOutputStream(contentFullPath, CREATE, TRUNCATE_EXISTING);
         writeContent(inputStream, outputStream);
     }
 
-    public void download(String contentPath, ServletOutputStream outputStream) throws IOException {
+    public void download(String contentPath, OutputStream outputStream) throws IOException {
         InputStream inputStream;
-        if (contentPath.startsWith("/app/")) {
-            String appPath = "/WEB-INF" + contentPath.replaceFirst("/app", "");
+        String decodedPath = URLDecoder.decode(contentPath, StandardCharsets.UTF_8);
+        if (decodedPath.startsWith("/app/")) {
+            String appPath = "/WEB-INF" + decodedPath.replaceFirst("/app", "");
             inputStream = ContentService.class.getClassLoader().getResourceAsStream(appPath);
         } else {
-            Path contentFullPath = getAbsolutePath(contentPath);
-            inputStream = Files.exists(contentFullPath) ? Files.newInputStream(contentFullPath) : null;
+            Path contentFullPath = Path.of(BASE_CONTENT_PATH, decodedPath);
+            inputStream = Files.newInputStream(contentFullPath);
         }
         if (inputStream == null) {
             throw new FileNotFoundException();
@@ -56,10 +55,5 @@ public class ContentService {
                 outputStream.write(currentByte);
             }
         }
-    }
-
-    private Path getAbsolutePath(String contentPath) {
-        String basePath = "\\Users\\marat\\Downloads";
-        return Path.of(basePath, contentPath);
     }
 }

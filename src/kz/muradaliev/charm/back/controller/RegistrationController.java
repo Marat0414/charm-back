@@ -18,6 +18,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+import static kz.muradaliev.charm.back.utils.UrlUtils.*;
+
 @WebServlet("/registration")
 public class RegistrationController extends HttpServlet {
 
@@ -30,34 +32,20 @@ public class RegistrationController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(req, resp);
+        req.getRequestDispatcher(getJspPath(REGISTRATION_URL)).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         RegistrationDto dto = requestToRegistrationDtoMapper.map(req);
-        ValidationResult result = registrationValidator.validate(dto);
-        if (!result.isValid()) {
-            req.setAttribute("errors", result.getErrors());
-            doGet(req, resp);
-        } else {
+        ValidationResult validationResult = registrationValidator.validate(dto);
+        if (validationResult.isValid()) {
             Long id = service.save(dto);
             log.info("Profile with the email address {} has been registered with id {}", dto.getEmail(), id);
-            resp.sendRedirect(String.format("/profile?id=%s", id));
+            resp.sendRedirect(LOGIN_URL);
+        } else {
+            req.setAttribute("errors", validationResult.getErrors());
+            doGet(req, resp);
         }
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String sId = req.getParameter("id");
-        boolean success = false;
-        if (!sId.isBlank()) {
-            success = service.delete(Long.parseLong(sId));
-        }
-        resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
-        if (success) {
-            log.info("Profile with id {} has been deleted", sId);
-        }
-        resp.sendRedirect("/registration");
     }
 }

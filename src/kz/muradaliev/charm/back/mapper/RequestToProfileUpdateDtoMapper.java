@@ -2,6 +2,7 @@ package kz.muradaliev.charm.back.mapper;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.Part;
 import kz.muradaliev.charm.back.dto.ProfileUpdateDto;
 import kz.muradaliev.charm.back.model.Gender;
 import kz.muradaliev.charm.back.model.Status;
@@ -30,14 +31,10 @@ public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletReques
 
     @Override
     @SneakyThrows
-    public ProfileUpdateDto map(HttpServletRequest req, ProfileUpdateDto dto) {
+    public ProfileUpdateDto map(HttpServletRequest req, ProfileUpdateDto dto){
         String id = req.getParameter("id");
         if (!isBlank(id)) {
             dto.setId(Long.parseLong(id));
-        }
-        String email = req.getParameter("email");
-        if (!isBlank(email)) {
-            dto.setEmail(email);
         }
         dto.setName(req.getParameter("name"));
         dto.setSurname(req.getParameter("surname"));
@@ -55,7 +52,10 @@ public class RequestToProfileUpdateDtoMapper implements Mapper<HttpServletReques
             dto.setStatus(Status.valueOf(status));
         }
         try {
-            dto.setPhoto(req.getPart("photo"));
+            Part photo = req.getPart("photo");
+            if (photo != null && !isBlank(photo.getSubmittedFileName())) {
+                dto.setPhoto(photo);
+            }
         } catch (IOException | ServletException e) {
             e.printStackTrace();
         }

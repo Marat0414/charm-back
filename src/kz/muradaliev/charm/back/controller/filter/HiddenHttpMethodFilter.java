@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import kz.muradaliev.charm.back.model.Gender;
 import kz.muradaliev.charm.back.model.Status;
-import lombok.Setter;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -37,7 +36,6 @@ public class HiddenHttpMethodFilter implements Filter {
             servletContext.setAttribute("statuses", Status.values());
         }
     }
-
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
