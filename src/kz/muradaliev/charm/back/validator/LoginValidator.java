@@ -1,5 +1,6 @@
 package kz.muradaliev.charm.back.validator;
 
+import kz.muradaliev.charm.back.dao.InMemoryProfileDao;
 import kz.muradaliev.charm.back.dao.ProfileDao;
 import kz.muradaliev.charm.back.dto.LoginDto;
 import kz.muradaliev.charm.back.model.Profile;
@@ -13,7 +14,7 @@ import static kz.muradaliev.charm.back.utils.StringUtils.*;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LoginValidator implements Validator<LoginDto> {
 
-    private final ProfileDao dao = ProfileDao.getInstance();
+    private final ProfileDao dao = InMemoryProfileDao.getInstance();
 
     private static final LoginValidator INSTANCE = new LoginValidator();
 
@@ -27,11 +28,8 @@ public class LoginValidator implements Validator<LoginDto> {
         if (!isValidEmail(dto.getEmail())) {
             result.add("error.email.invalid");
         }
-        Optional<Profile> profile = dao.findByEmail(dto.getEmail());
-        if (profile.isEmpty()) {
+        if (!dao.existByEmail(dto.getEmail())) {
             result.add("error.email.missing");
-        } else if (isBlank(dto.getPassword()) || !dto.getPassword().equals(profile.get().getPassword())) {
-            result.add("error.password.invalid");
         }
         return result;
     }

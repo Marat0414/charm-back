@@ -3,11 +3,14 @@ package kz.muradaliev.charm.back.dto;
 import jakarta.servlet.http.Part;
 import kz.muradaliev.charm.back.model.Gender;
 import kz.muradaliev.charm.back.model.Status;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProfileUpdateDto {
     private Long id;
     private String name;

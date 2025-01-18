@@ -1,6 +1,7 @@
 package kz.muradaliev.charm.back.service;
 
 import jakarta.servlet.http.Part;
+import kz.muradaliev.charm.back.dao.InMemoryProfileDao;
 import kz.muradaliev.charm.back.dao.ProfileDao;
 import kz.muradaliev.charm.back.dto.*;
 import kz.muradaliev.charm.back.mapper.*;
@@ -20,7 +21,7 @@ public class ProfileService {
 
     private static final ProfileService INSTANCE = new ProfileService();
 
-    private final ProfileDao dao = ProfileDao.getInstance();
+    private final ProfileDao dao = InMemoryProfileDao.getInstance();
 
     private final ContentService contentService = ContentService.getInstance();
 
@@ -48,12 +49,16 @@ public class ProfileService {
         return dao.findById(id).map(profileToProfileGetDtoMapper::map);
     }
 
+    public Optional<UserDetails> login(LoginDto dto) {
+        return dao.findByEmailAndPassword(dto.getEmail(), dto.getPassword()).map(profileToUserDetailsMapper::map);
+    }
+
     public List<ProfileGetDto> findAll() {
         return dao.findAll().stream().map(profileToProfileGetDtoMapper::map).toList();
     }
 
     @SneakyThrows
-    public void update(ProfileUpdateDto dto) throws IOException {
+    public void update(ProfileUpdateDto dto) throws IOException{
         Optional<Profile> optProfile = dao.findById(dto.getId());
         if (optProfile.isPresent()) {
             Part photo = dto.getPhoto();
@@ -68,7 +73,7 @@ public class ProfileService {
     }
 
     @SneakyThrows
-    public void update(ProfileFullUpdateDto dto) throws IOException {
+    public void update(ProfileFullUpdateDto dto) throws IOException{
         Optional<Profile> optProfile = dao.findById(dto.getId());
         if (optProfile.isPresent()) {
             Part photo = dto.getPhoto();
@@ -88,9 +93,5 @@ public class ProfileService {
 
     public boolean delete(Long id) {
         return dao.delete(id);
-    }
-
-    public Optional<UserDetails> getUserDetails(String email) {
-        return dao.findByEmail(email).map(profileToUserDetailsMapper::map);
     }
 }

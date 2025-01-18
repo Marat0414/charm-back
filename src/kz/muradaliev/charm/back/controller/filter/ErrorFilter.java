@@ -11,8 +11,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kz.muradaliev.charm.back.mapper.JsonMapper;
-import kz.muradaliev.charm.back.utils.WordBundle;
-import lombok.extern.slf4j.Slf4j;
+import kz.muradaliev.charm.back.service.bundle.WordBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
