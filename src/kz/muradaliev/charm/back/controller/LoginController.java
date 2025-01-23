@@ -6,8 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kz.muradaliev.charm.back.dto.LoginDto;
-import kz.muradaliev.charm.back.dto.ProfileGetDto;
-import kz.muradaliev.charm.back.dto.RegistrationDto;
 import kz.muradaliev.charm.back.dto.UserDetails;
 import kz.muradaliev.charm.back.mapper.RequestToLoginDtoMapper;
 import kz.muradaliev.charm.back.service.ProfileService;

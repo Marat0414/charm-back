@@ -20,7 +20,7 @@ import java.io.IOException;
 
 import static kz.muradaliev.charm.back.utils.UrlUtils.*;
 
-@WebServlet("/registration2")
+@WebServlet(REGISTRATION_URL)
 public class RegistrationController extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(RegistrationController.class);
