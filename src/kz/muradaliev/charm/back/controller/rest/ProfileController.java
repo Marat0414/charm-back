@@ -17,6 +17,7 @@ import kz.muradaliev.charm.back.service.ProfileService;
 import kz.muradaliev.charm.back.validator.ProfileFullUpdateValidator;
 import kz.muradaliev.charm.back.validator.RegistrationValidator;
 import kz.muradaliev.charm.back.validator.ValidationResult;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,6 +1,5 @@
 package kz.muradaliev.charm.back.validator;
 
-import kz.muradaliev.charm.back.dao.InMemoryProfileDao;
 import kz.muradaliev.charm.back.dao.ProfileDao;
 import kz.muradaliev.charm.back.dto.ProfileFullUpdateDto;
 import lombok.AccessLevel;
@@ -13,7 +12,7 @@ import static kz.muradaliev.charm.back.utils.StringUtils.isValidPassword;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileFullUpdateValidator implements Validator<ProfileFullUpdateDto> {
 
-    private final ProfileDao dao = InMemoryProfileDao.getInstance();
+    private final ProfileDao dao = ProfileDao.getInstance();
 
     private static final ProfileFullUpdateValidator INSTANCE = new ProfileFullUpdateValidator();
 

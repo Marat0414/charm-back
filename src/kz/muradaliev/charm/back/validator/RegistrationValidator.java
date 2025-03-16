@@ -1,6 +1,5 @@
 package kz.muradaliev.charm.back.validator;
 
-import kz.muradaliev.charm.back.dao.InMemoryProfileDao;
 import kz.muradaliev.charm.back.dao.ProfileDao;
 import kz.muradaliev.charm.back.dto.RegistrationDto;
 import lombok.AccessLevel;
@@ -11,7 +10,7 @@ import static kz.muradaliev.charm.back.utils.StringUtils.*;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RegistrationValidator implements Validator<RegistrationDto> {
 
-    private final ProfileDao dao = InMemoryProfileDao.getInstance();
+    private final ProfileDao dao = ProfileDao.getInstance();
 
     private static final RegistrationValidator INSTANCE = new RegistrationValidator();
 

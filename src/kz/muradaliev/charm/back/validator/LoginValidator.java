@@ -1,6 +1,5 @@
 package kz.muradaliev.charm.back.validator;
 
-import kz.muradaliev.charm.back.dao.InMemoryProfileDao;
 import kz.muradaliev.charm.back.dao.ProfileDao;
 import kz.muradaliev.charm.back.dto.LoginDto;
 import kz.muradaliev.charm.back.model.Profile;
@@ -14,7 +13,7 @@ import static kz.muradaliev.charm.back.utils.StringUtils.*;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LoginValidator implements Validator<LoginDto> {
 
-    private final ProfileDao dao = InMemoryProfileDao.getInstance();
+    private final ProfileDao dao = ProfileDao.getInstance();
 
     private static final LoginValidator INSTANCE = new LoginValidator();
 

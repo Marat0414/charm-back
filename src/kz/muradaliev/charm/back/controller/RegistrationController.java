@@ -5,14 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kz.muradaliev.charm.back.dto.ProfileGetDto;
 import kz.muradaliev.charm.back.dto.RegistrationDto;
 import kz.muradaliev.charm.back.mapper.RequestToRegistrationDtoMapper;
-import kz.muradaliev.charm.back.model.Profile;
 import kz.muradaliev.charm.back.service.ProfileService;
 import kz.muradaliev.charm.back.validator.RegistrationValidator;
 import kz.muradaliev.charm.back.validator.ValidationResult;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
