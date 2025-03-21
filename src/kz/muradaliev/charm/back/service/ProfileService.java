@@ -57,7 +57,7 @@ public class ProfileService {
     }
 
     @SneakyThrows
-    public void update(ProfileUpdateDto dto) {
+    public void update(ProfileUpdateDto dto) throws IOException{
         Optional<Profile> optProfile = dao.findById(dto.getId());
         if (optProfile.isPresent()) {
             Part photo = dto.getPhoto();
@@ -72,7 +72,7 @@ public class ProfileService {
     }
 
     @SneakyThrows
-    public void update(ProfileFullUpdateDto dto) {
+    public void update(ProfileFullUpdateDto dto) throws IOException{
         Optional<Profile> optProfile = dao.findById(dto.getId());
         if (optProfile.isPresent()) {
             Part photo = dto.getPhoto();

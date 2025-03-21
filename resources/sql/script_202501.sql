@@ -44,11 +44,16 @@ CREATE TABLE "like"(
 );
 
 INSERT INTO "like" (from_profile, to_profile, "like") VALUES
-                                                          (2, 3, TRUE),
-                                                          (3, 2, FALSE);
+                                                          (5, 6, TRUE),
+                                                          (6, 5, TRUE);
 
 SELECT * FROM "like";
 
 SELECT p.surname,l.to_profile FROM profile p INNER JOIN "like" l
                              ON p.id = l.from_profile
 WHERE email = 'ivanov@mail.ru';
+
+INSERT INTO "like" (from_profile, to_profile, "like") VALUES
+                                                          (5, 6, TRUE), (6, 5, TRUE);
+
+SELECT * FROM "like";
