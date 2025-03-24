@@ -4,8 +4,7 @@ import kz.muradaliev.charm.back.model.Gender;
 import kz.muradaliev.charm.back.model.Profile;
 import kz.muradaliev.charm.back.model.Role;
 import kz.muradaliev.charm.back.model.Status;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import kz.muradaliev.charm.back.utils.ConnectionManager;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,25 +13,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static kz.muradaliev.charm.back.utils.ConnectionManager.*;
+
 @Slf4j
 public class ProfileDao {
 
     private static final ProfileDao INSTANCE = new ProfileDao();
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/charm_repository";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "0414";
-
     @SneakyThrows
     public static ProfileDao getInstance() {
-        Class.forName("org.postgresql.Driver");
         return INSTANCE;
     }
 
     public Profile save(Profile profile) {
         //language=POSTGRES-PSQL
         String sql = "INSERT INTO profile (email, password) VALUES (?, ?)";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, profile.getEmail());
             stmt.setString(2, profile.getPassword());
@@ -53,7 +49,7 @@ public class ProfileDao {
     public Optional<Profile> findById(Long id) {
         //language=POSTGRES-PSQL
         String sql = "SELECT * FROM profile WHERE id = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setLong(1, id);
 
@@ -72,7 +68,7 @@ public class ProfileDao {
     public Optional<Profile> findByEmailAndPassword(String email, String password) {
         //language=POSTGRES-PSQL
         String sql = "SELECT * FROM profile WHERE email = ? AND password = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, email);
             stmt.setString(2, password);
@@ -92,7 +88,7 @@ public class ProfileDao {
     public boolean existByEmail(String email) {
         //language=POSTGRES-PSQL
         String sql = "SELECT * FROM profile WHERE email = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, email);
 
@@ -106,8 +102,12 @@ public class ProfileDao {
     public List<Profile> findAll() {
         //language=POSTGRES-PSQL
         String sql = "SELECT * FROM profile";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setFetchSize(FETCH_SIZE);
+            stmt.setMaxRows(MAX_ROWS);
+            stmt.setQueryTimeout(QUERY_TIMEOUT);
+
             ResultSet rs = stmt.executeQuery();
 
             List<Profile> profiles = new ArrayList<>();
@@ -159,7 +159,7 @@ public class ProfileDao {
         args.add(profile.getId());
 
         String sql = queryBuilder.toString();
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             for (int i = 0; i < args.size(); i++) {
@@ -177,7 +177,7 @@ public class ProfileDao {
     public boolean delete(Long id) {
         //language=POSTGRES-PSQL
         String sql = "DELETE FROM profile WHERE id = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setLong(1, id);
 

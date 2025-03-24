@@ -1,0 +1,19 @@
+setapp:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/charm_repository
+    username: postgres
+    password: "0414"
+    driver: org.postgresql.Driver
+    query-timeout: 5
+    fetch-size: 50
+    max-rows: 100
+  base_content_path: "C:\\Users\\marat\\Downloads"
+
+
+
+
+
+
+
+
+

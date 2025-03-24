@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+import static kz.muradaliev.charm.back.utils.DateTimeUtils.getAge;
+import static kz.muradaliev.charm.back.utils.UrlUtils.getProfilePhotoPath;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileToProfileGetDtoMapper implements Mapper<Profile, ProfileGetDto> {
-
     private static final ProfileToProfileGetDtoMapper INSTANCE = new ProfileToProfileGetDtoMapper();
-//    private ProfileToProfileGetDtoMapper() {
-//    }
 
     public static ProfileToProfileGetDtoMapper getInstance() {
         return INSTANCE;
@@ -32,12 +32,15 @@ public class ProfileToProfileGetDtoMapper implements Mapper<Profile, ProfileGetD
         dto.setSurname(profile.getSurname());
         dto.setBirthDate(profile.getBirthDate());
         if (profile.getBirthDate() != null) {
-            dto.setAge(Math.toIntExact(ChronoUnit.YEARS.between(profile.getBirthDate(), LocalDate.now())));
+            dto.setAge(getAge(profile.getBirthDate()));
         }
         dto.setAbout(profile.getAbout());
         dto.setGender(profile.getGender());
         dto.setStatus(profile.getStatus());
-        dto.setPhoto(profile.getPhoto());
+        if (profile.getPhoto() != null) {
+            dto.setPhoto(getProfilePhotoPath(profile.getId(), profile.getPhoto()));
+        }
+        dto.setRole(profile.getRole());
         return dto;
     }
 }

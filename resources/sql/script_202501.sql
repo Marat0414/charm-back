@@ -57,3 +57,8 @@ INSERT INTO "like" (from_profile, to_profile, "like") VALUES
                                                           (5, 6, TRUE), (6, 5, TRUE);
 
 SELECT * FROM "like";
+
+
+SELECT COUNT(*) FROM profile;
+
+ALTER DATABASE charm_repository SET statement_timeout ='60s';
