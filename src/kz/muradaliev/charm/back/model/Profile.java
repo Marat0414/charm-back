@@ -7,7 +7,7 @@ public class Profile {
     private Long id;
     private String email;
     private String password;
-    private String name;
+    private String firstName;
     private String surname;
     private LocalDate birthDate;
     private String about;
@@ -41,12 +41,12 @@ public class Profile {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getSurname() {

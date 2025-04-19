@@ -29,6 +29,4 @@ public class RegistrationDtoToProfileMapper implements Mapper<RegistrationDto, P
         profile.setPassword(dto.getPassword());
         return profile;
     }
-
-
 }

@@ -1,16 +1,11 @@
 package kz.muradaliev.charm.back.controller.filter;
 
-import jakarta.servlet.Filter;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
+import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
+import kz.muradaliev.charm.back.dao.ProfileDao;
 import kz.muradaliev.charm.back.model.Gender;
 import kz.muradaliev.charm.back.model.Status;
 
@@ -26,6 +21,7 @@ import static kz.muradaliev.charm.back.utils.UrlUtils.REST_URL;
 public class HiddenHttpMethodFilter implements Filter {
 
     private static final String METHOD_PARAM = "_method";
+    private final ProfileDao profileDao = ProfileDao.getInstance();
 
     @Override
     public void init(FilterConfig filterConfig) {
@@ -35,6 +31,9 @@ public class HiddenHttpMethodFilter implements Filter {
         }
         if (servletContext.getAttribute("statuses") == null) {
             servletContext.setAttribute("statuses", Status.values());
+        }
+        if (servletContext.getAttribute("profileSortableColumns") == null) {
+            servletContext.setAttribute("profileSortableColumns", profileDao.getSortableColumns());
         }
     }
 

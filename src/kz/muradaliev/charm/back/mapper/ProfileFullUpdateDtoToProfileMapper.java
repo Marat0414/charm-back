@@ -29,7 +29,7 @@ public class ProfileFullUpdateDtoToProfileMapper implements Mapper<ProfileFullUp
             profile.setPassword(dto.getPassword());
         }
         if (dto.getName() != null) {
-            profile.setName(dto.getName());
+            profile.setFirstName(dto.getName());
         }
         if (dto.getSurname() != null) {
             profile.setSurname(dto.getSurname());

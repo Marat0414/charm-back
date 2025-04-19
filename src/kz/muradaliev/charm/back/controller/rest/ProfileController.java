@@ -37,9 +37,8 @@ import static kz.muradaliev.charm.back.utils.UrlUtils.REST_URL;
 
 @WebServlet(REST_URL + PROFILE_URL)
 @MultipartConfig
+@Slf4j
 public class ProfileController extends HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(ProfileController.class);
-
     private final ProfileService service = ProfileService.getInstance();
     private final JsonMapper jsonMapper = JsonMapper.getInstance();
     private final ProfileFullUpdateValidator profileFullUpdateValidator = ProfileFullUpdateValidator.getInstance();
@@ -49,15 +48,12 @@ public class ProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try (PrintWriter writer = res.getWriter()) {
             String sId = req.getParameter("id");
-            if (sId != null) {
-                Optional<ProfileGetDto> optProfileDto = service.findById(Long.parseLong(sId));
-                if (optProfileDto.isPresent()) {
-                    jsonMapper.writeValue(writer, optProfileDto.get());
-                } else {
-                    res.sendError(HttpServletResponse.SC_NOT_FOUND);
-                }
+            Long id = sId == null ? null : Long.parseLong(sId);
+            Optional<ProfileGetDto> optProfileDto = service.findById(id);
+            if (optProfileDto.isPresent()) {
+                jsonMapper.writeValue(writer, optProfileDto.get());
             } else {
-                jsonMapper.writeValue(writer, service.findAll());
+                res.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
         } catch (DatabindException ex) {
             req.setAttribute("errors", List.of(ex.getMessage()));
@@ -125,6 +121,4 @@ public class ProfileController extends HttpServlet {
         }
 
     }
-
-
 }

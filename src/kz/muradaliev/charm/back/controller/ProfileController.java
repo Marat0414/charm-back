@@ -18,6 +18,7 @@ import kz.muradaliev.charm.back.mapper.RequestToProfileUpdateDtoMapper;
 import kz.muradaliev.charm.back.service.ProfileService;
 import kz.muradaliev.charm.back.validator.ProfileUpdateValidator;
 import kz.muradaliev.charm.back.validator.ValidationResult;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,9 +32,8 @@ import static kz.muradaliev.charm.back.utils.UrlUtils.*;
 
 @WebServlet(PROFILE_URL + "/*")
 @MultipartConfig
+@Slf4j
 public class ProfileController extends HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(ProfileController.class);
-
     private final ProfileService service = ProfileService.getInstance();
 
     private final RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper = RequestToProfileUpdateDtoMapper.getInstance();
@@ -45,30 +45,26 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String sId = req.getParameter("id");
-        if (sId != null) {
-            Optional<ProfileGetDto> optProfileGetDto = service.findById(Long.parseLong(sId));
-            if (optProfileGetDto.isPresent()) {
-                ProfileGetDto profileGetDto = optProfileGetDto.get();
-                if (req.getRequestURI().equals(PROFILE_URL + PDF_URL)) {
-                    res.setHeader("Content-Disposition", "attachment; filename=\"resume.pdf\"");
-                    res.setContentType("application/pdf");
-                    try (OutputStream outputStream = res.getOutputStream()) {
-                        Document pdf = new Document();
-                        PdfWriter.getInstance(pdf, outputStream);
-                        profileGetDtoToPdfMapper.map(profileGetDto, pdf);
-                    } catch (DocumentException e) {
-                        throw new IOException(e);
-                    }
-                } else {
-                    req.setAttribute("profile", profileGetDto);
-                    req.getRequestDispatcher(getJspPath(PROFILE_URL)).forward(req, res);
+        Long id = sId == null ? null : Long.parseLong(sId);
+        Optional<ProfileGetDto> optProfileGetDto = service.findById(id);
+        if (optProfileGetDto.isPresent()) {
+            ProfileGetDto profileGetDto = optProfileGetDto.get();
+            if (req.getRequestURI().equals(PROFILE_URL + PDF_URL)) {
+                res.setHeader("Content-Disposition", "attachment; filename=\"resume.pdf\"");
+                res.setContentType("application/pdf");
+                try (OutputStream outputStream = res.getOutputStream()) {
+                    Document pdf = new Document();
+                    PdfWriter.getInstance(pdf, outputStream);
+                    profileGetDtoToPdfMapper.map(profileGetDto, pdf);
+                } catch (DocumentException e) {
+                    throw new IOException(e);
                 }
             } else {
-                res.sendError(SC_NOT_FOUND);
+                req.setAttribute("profile", profileGetDto);
+                req.getRequestDispatcher(getJspPath(PROFILE_URL)).forward(req, res);
             }
         } else {
-            req.setAttribute("profiles", service.findAll());
-            req.getRequestDispatcher(getJspPath("/profiles")).forward(req, res);
+            res.sendError(SC_NOT_FOUND);
         }
     }
 

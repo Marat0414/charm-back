@@ -28,7 +28,7 @@ public class ProfileToProfileGetDtoMapper implements Mapper<Profile, ProfileGetD
     public ProfileGetDto map(Profile profile, ProfileGetDto dto) {
         dto.setId(profile.getId());
         dto.setEmail(profile.getEmail());
-        dto.setName(profile.getName());
+        dto.setName(profile.getFirstName());
         dto.setSurname(profile.getSurname());
         dto.setBirthDate(profile.getBirthDate());
         if (profile.getBirthDate() != null) {

@@ -23,7 +23,7 @@ public class ProfileUpdateDtoToProfileMapper implements Mapper<ProfileUpdateDto,
     public Profile map(ProfileUpdateDto dto, Profile profile) {
         profile.setId(dto.getId());
         if (dto.getName() != null) {
-            profile.setName(dto.getName());
+            profile.setFirstName(dto.getName());
         }
         if (dto.getSurname() != null) {
             profile.setSurname(dto.getSurname());
