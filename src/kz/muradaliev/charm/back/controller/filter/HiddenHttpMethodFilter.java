@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import static jakarta.servlet.DispatcherType.FORWARD;
 import static jakarta.servlet.DispatcherType.REQUEST;
+import static kz.muradaliev.charm.back.utils.ConnectionManager.AVAILABLE_PAGE_SIZES;
 import static kz.muradaliev.charm.back.utils.StringUtils.isBlank;
 import static kz.muradaliev.charm.back.utils.UrlUtils.REST_URL;
 
@@ -32,8 +33,8 @@ public class HiddenHttpMethodFilter implements Filter {
         if (servletContext.getAttribute("statuses") == null) {
             servletContext.setAttribute("statuses", Status.values());
         }
-        if (servletContext.getAttribute("profileSortableColumns") == null) {
-            servletContext.setAttribute("profileSortableColumns", profileDao.getSortableColumns());
+        if (servletContext.getAttribute("availablePageSizes") == null) {
+            servletContext.setAttribute("availablePageSizes", AVAILABLE_PAGE_SIZES);
         }
     }
 

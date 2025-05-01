@@ -1,6 +1,5 @@
 package kz.muradaliev.charm.back.mapper;
 
-import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;

@@ -17,11 +17,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import static kz.muradaliev.charm.back.utils.ConnectionManager.*;
 
-@Slf4j
+
 public class ProfileDao {
+
+    private static Logger log = Logger.getLogger(ProfileDao.class.getName());
 
     //language=POSTGRES-PSQL
     public static final String INSERT = "INSERT INTO profile (email, password) VALUES (?, ?)";
@@ -29,6 +32,8 @@ public class ProfileDao {
     private static final ProfileDao INSTANCE = new ProfileDao();
 
     private final ResultSetToProfileMapper mapper = ResultSetToProfileMapper.getInstance();
+
+    private List<String> sortableColumns;
 
     @SneakyThrows
     public static ProfileDao getInstance() {
@@ -104,7 +109,8 @@ public class ProfileDao {
                 .addStatus(filter.getStatus())
                 .addLTAge(filter.getLtAge())
                 .addGTEAge(filter.getGteAge())
-                .addSortedColumn(filter.getSort())
+                .addSortedColumn(getSortColumn(filter.getSort()))
+                .addPageAndPageSize(filter.getPage(), filter.getPageSize())
                 .build();
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = ConnectionManager.getPreparedStmt(conn, query)) {
@@ -127,7 +133,7 @@ public class ProfileDao {
         Query query = new ProfileUpdateQueryBuilder()
                 .addEmail(profile.getEmail())
                 .addPassword(profile.getPassword())
-                .addName(profile.getFirstName())
+                .addName(profile.getName())
                 .addSurname(profile.getSurname())
                 .addBirthDate(profile.getBirthDate())
                 .addAbout(profile.getAbout())
@@ -151,25 +157,31 @@ public class ProfileDao {
             stmt.setLong(1, id);
 
             int deleteCount = stmt.executeUpdate();
-            log.debug("Delete count: {}", deleteCount);
+//            log.debug("Delete count: {}", deleteCount);
             return deleteCount > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public List<String> getSortableColumns() {
-        try (Connection conn = ConnectionManager.getConnection()) {
-            ResultSet rs = conn.getMetaData().getColumns(null, null, "profile", null);
-            List<String> result = new ArrayList<>();
-            while (rs.next()) {
-                if ("sortable".equals(rs.getString("REMARKS"))) {
-                    result.add(rs.getString("COLUMN_NAME"));
+    private String getSortColumn(String sort) {
+        if (sortableColumns == null) {
+            try (Connection conn = ConnectionManager.getConnection()) {
+                ResultSet rs = conn.getMetaData().getColumns(null, null, "profile", null);
+                sortableColumns = new ArrayList<>();
+                while (rs.next()) {
+                    if ("sortable".equals(rs.getString("REMARKS"))) {
+                        sortableColumns.add(rs.getString("COLUMN_NAME"));
+                    }
                 }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-            return result;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
+        if (sort != null && sortableColumns.contains(sort)) {
+            return sort;
+        }
+        return "id";
     }
 }
+//log.info("Delete count: " + deleteCount);

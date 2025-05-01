@@ -5,8 +5,6 @@ import kz.muradaliev.charm.back.model.Role;
 import kz.muradaliev.charm.back.model.Status;
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;

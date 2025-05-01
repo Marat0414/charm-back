@@ -2,13 +2,16 @@ package kz.muradaliev.charm.back.mapper;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+import kz.muradaliev.charm.back.controller.rest.ProfileController;
 import kz.muradaliev.charm.back.dto.ProfileFilter;
 import kz.muradaliev.charm.back.model.Status;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import static kz.muradaliev.charm.back.utils.ConnectionManager.*;
 import static kz.muradaliev.charm.back.utils.StringUtils.isBlank;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -52,11 +55,16 @@ public class RequestToProfileFilterMapper implements Mapper<HttpServletRequest, 
         filter.setStatus(status);
 
         String sortArg = req.getParameter("sort");
-        List<String> profileSortableColumns =
-                (List<String>) req.getServletContext().getAttribute("profileSortableColumns");
-        if (profileSortableColumns.contains(sortArg)) {
-            filter.setSort(sortArg);
-        }
+        String sort = isBlank(sortArg) ? DEFAULT_SORTED_COLUMN : sortArg;
+        filter.setSort(sort);
+
+        String pageArg = req.getParameter("page");
+        Integer page = isBlank(pageArg) ? DEFAULT_PAGE : Integer.parseInt(pageArg);
+        filter.setPage(page);
+
+        String pageSizeArg = req.getParameter("pageSize");
+        Integer pageSize = isBlank(pageSizeArg) ? DEFAULT_PAGE_SIZE : Integer.parseInt(pageSizeArg);
+        filter.setPageSize(pageSize);
 
         return filter;
     }

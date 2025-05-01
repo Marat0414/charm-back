@@ -1,13 +1,18 @@
 package kz.muradaliev.charm.back.model;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.experimental.FieldDefaults;
+
 import java.time.LocalDate;
 
-
+@Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Profile {
     private Long id;
     private String email;
     private String password;
-    private String firstName;
+    private String name;
     private String surname;
     private LocalDate birthDate;
     private String about;
@@ -41,12 +46,12 @@ public class Profile {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSurname() {

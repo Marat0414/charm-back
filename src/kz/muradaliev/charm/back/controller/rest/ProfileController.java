@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import kz.muradaliev.charm.back.dao.ProfileDao;
 import kz.muradaliev.charm.back.dto.ProfileFullUpdateDto;
 import kz.muradaliev.charm.back.dto.ProfileGetDto;
 import kz.muradaliev.charm.back.dto.RegistrationDto;
@@ -18,7 +19,6 @@ import kz.muradaliev.charm.back.validator.ProfileFullUpdateValidator;
 import kz.muradaliev.charm.back.validator.RegistrationValidator;
 import kz.muradaliev.charm.back.validator.ValidationResult;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
@@ -37,8 +38,8 @@ import static kz.muradaliev.charm.back.utils.UrlUtils.REST_URL;
 
 @WebServlet(REST_URL + PROFILE_URL)
 @MultipartConfig
-@Slf4j
 public class ProfileController extends HttpServlet {
+    private static java.util.logging.Logger log = Logger.getLogger(ProfileController.class.getName());
     private final ProfileService service = ProfileService.getInstance();
     private final JsonMapper jsonMapper = JsonMapper.getInstance();
     private final ProfileFullUpdateValidator profileFullUpdateValidator = ProfileFullUpdateValidator.getInstance();
@@ -68,7 +69,7 @@ public class ProfileController extends HttpServlet {
             ValidationResult validationResult = registrationValidator.validate(dto);
             if (validationResult.isValid()) {
                 Long id = service.save(dto);
-                log.info("Profile with the email address {} has been registered with id {}", dto.getEmail(), id);
+                log.info("Profile with the email address " + dto.getEmail() + " {} has been registered with id " +  + id);
             } else {
                 req.setAttribute("errors", validationResult.getErrors());
                 res.sendError(SC_BAD_REQUEST);

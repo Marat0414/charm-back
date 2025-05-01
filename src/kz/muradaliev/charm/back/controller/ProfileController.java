@@ -19,12 +19,12 @@ import kz.muradaliev.charm.back.service.ProfileService;
 import kz.muradaliev.charm.back.validator.ProfileUpdateValidator;
 import kz.muradaliev.charm.back.validator.ValidationResult;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static kz.muradaliev.charm.back.utils.StringUtils.isBlank;
@@ -32,8 +32,8 @@ import static kz.muradaliev.charm.back.utils.UrlUtils.*;
 
 @WebServlet(PROFILE_URL + "/*")
 @MultipartConfig
-@Slf4j
 public class ProfileController extends HttpServlet {
+    private static java.util.logging.Logger log = Logger.getLogger(ProfileController.class.getName());
     private final ProfileService service = ProfileService.getInstance();
 
     private final RequestToProfileUpdateDtoMapper requestToProfileUpdateDtoMapper = RequestToProfileUpdateDtoMapper.getInstance();
@@ -86,7 +86,7 @@ public class ProfileController extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String sId = req.getParameter("id");
         if (!isBlank(sId) && service.delete(Long.parseLong(sId))) {
-            log.info("Profile with id {} has been deleted", sId);
+            log.info("Profile with id {} has been deleted" + sId);
             UserDetails userDetails = (UserDetails) req.getSession().getAttribute("userDetails");
             if (sId.equals(userDetails.getId().toString())) {
                 req.getSession().invalidate();

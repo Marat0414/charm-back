@@ -5,9 +5,6 @@ import kz.muradaliev.charm.back.model.Profile;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-
 import static kz.muradaliev.charm.back.utils.DateTimeUtils.getAge;
 import static kz.muradaliev.charm.back.utils.UrlUtils.getProfilePhotoPath;
 
@@ -28,7 +25,7 @@ public class ProfileToProfileGetDtoMapper implements Mapper<Profile, ProfileGetD
     public ProfileGetDto map(Profile profile, ProfileGetDto dto) {
         dto.setId(profile.getId());
         dto.setEmail(profile.getEmail());
-        dto.setName(profile.getFirstName());
+        dto.setName(profile.getName());
         dto.setSurname(profile.getSurname());
         dto.setBirthDate(profile.getBirthDate());
         if (profile.getBirthDate() != null) {

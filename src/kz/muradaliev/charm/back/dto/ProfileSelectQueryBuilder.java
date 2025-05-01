@@ -6,13 +6,14 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import static kz.muradaliev.charm.back.utils.ConnectionManager.*;
 import static kz.muradaliev.charm.back.utils.DateTimeUtils.getPastDate;
 
 public class ProfileSelectQueryBuilder {
 
     //language=POSTGRES-PSQL
     public static final String SELECT_BASE = """
-			SELECT id, email, password, first_name, surname, birth_date, about, gender, photo, status, role
+			SELECT id, email, password, "name", surname, birth_date, about, gender, photo, status, role
 			FROM profile
 			WHERE '' = ''
 			""";
@@ -65,7 +66,7 @@ public class ProfileSelectQueryBuilder {
         if (nameStartWith == null) {
             return this;
         }
-        sb.append(" AND first_name like ?");
+        sb.append(" AND name like ?");
         args.add(nameStartWith + "%");
         return this;
     }
@@ -110,9 +111,18 @@ public class ProfileSelectQueryBuilder {
 
     public ProfileSelectQueryBuilder addSortedColumn(String column) {
         if (column == null) {
-            column = "id";
+            column = DEFAULT_SORTED_COLUMN;
         }
         sb.append(" ORDER BY ").append(column);
+        return this;
+    }
+
+    public ProfileSelectQueryBuilder addPageAndPageSize(Integer page, Integer pageSize) {
+        int limit = pageSize == null ? DEFAULT_PAGE_SIZE : pageSize;
+        int offset = page == null ? limit * (DEFAULT_PAGE - 1) : limit * (page - 1);
+        sb.append(" OFFSET ? LIMIT ?");
+        args.add(offset);
+        args.add(limit);
         return this;
     }
 
